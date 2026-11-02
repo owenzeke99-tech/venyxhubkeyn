@@ -1,0 +1,603 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Venyx Hub Key</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+    --silver:#e4e4e4;
+    --gray:#858585;
+    --dark:#080808;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    overflow:hidden;
+    background:#060606;
+    color:white;
+    font-family:Inter,sans-serif;
+}
+
+/* BACKGROUND */
+.background{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    background:
+      radial-gradient(ellipse at 20% 20%,#77777712,transparent 40%),
+      radial-gradient(ellipse at 80% 80%,#aaaaaa10,transparent 40%);
+}
+
+.orb{
+    position:absolute;
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    background:#aaa;
+    filter:blur(145px);
+    opacity:.11;
+    animation:orbMove 12s ease-in-out infinite alternate;
+}
+.orb.one{top:-180px;left:-140px}
+.orb.two{bottom:-190px;right:-130px;animation-delay:-6s}
+
+@keyframes orbMove{
+    0%{transform:translate(0,0) scale(.8)}
+    100%{transform:translate(100px,70px) scale(1.25)}
+}
+
+/* BACKGROUND GRID */
+.grid-bg{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.12;
+    background-image:
+      linear-gradient(#ffffff12 1px,transparent 1px),
+      linear-gradient(90deg,#ffffff12 1px,transparent 1px);
+    background-size:55px 55px;
+    mask-image:linear-gradient(transparent,black 20%,black 80%,transparent);
+    animation:gridMove 18s linear infinite;
+}
+@keyframes gridMove{
+    to{background-position:55px 55px}
+}
+
+/* PARTICLES */
+#particles,#stars{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.particle{
+    position:absolute;
+    bottom:-15px;
+    width:3px;
+    height:3px;
+    border-radius:50%;
+    background:#ddd;
+    box-shadow:0 0 8px #fff8;
+    animation:floatUp linear infinite;
+}
+@keyframes floatUp{
+    0%{transform:translateY(0) translateX(0);opacity:0}
+    15%{opacity:.8}
+    85%{opacity:.55}
+    100%{transform:translateY(-110vh) translateX(55px);opacity:0}
+}
+
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:#eee;
+    border-radius:50%;
+    animation:twinkle 2s ease-in-out infinite alternate;
+}
+@keyframes twinkle{
+    from{opacity:.1;transform:scale(.6)}
+    to{opacity:.9;transform:scale(1.5)}
+}
+
+/* CARD */
+.container{
+    width:100%;
+    max-width:430px;
+    position:relative;
+    z-index:2;
+    padding:38px 28px 27px;
+    border-radius:26px;
+    text-align:center;
+    background:linear-gradient(145deg,#252525,#101010 55%,#080808);
+    border:1px solid #ffffff30;
+    box-shadow:0 25px 80px #000,0 0 35px #ffffff0a,inset 0 1px 0 #ffffff15;
+    overflow:hidden;
+    animation:cardEnter .8s ease both;
+}
+
+@keyframes cardEnter{
+    from{opacity:0;transform:translateY(35px) scale(.94)}
+    to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+/* MOVING BORDER HIGHLIGHT - NO ROTATING RING */
+.container::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-70%;
+    width:55%;
+    height:2px;
+    background:linear-gradient(90deg,transparent,#fff,transparent);
+    box-shadow:0 0 12px #fff8;
+    animation:borderSweep 4s ease-in-out infinite;
+}
+@keyframes borderSweep{
+    0%,15%{left:-70%}
+    75%,100%{left:120%}
+}
+
+.container::after{
+    content:"";
+    position:absolute;
+    bottom:0;
+    right:-70%;
+    width:55%;
+    height:1px;
+    background:linear-gradient(90deg,transparent,#aaa,transparent);
+    animation:borderSweepReverse 5s ease-in-out infinite;
+}
+@keyframes borderSweepReverse{
+    0%,15%{right:-70%}
+    75%,100%{right:120%}
+}
+
+/* CARD LIGHT PASS */
+.card-light{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+}
+.card-light::before{
+    content:"";
+    position:absolute;
+    top:-30%;
+    left:-100%;
+    width:45%;
+    height:160%;
+    transform:rotate(22deg);
+    background:linear-gradient(90deg,transparent,#ffffff0b,transparent);
+    animation:lightPass 7s ease-in-out infinite;
+}
+@keyframes lightPass{
+    0%,40%{left:-100%}
+    80%,100%{left:150%}
+}
+
+/* LOGO */
+.logo-area{
+    width:110px;
+    height:110px;
+    margin:0 auto 22px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+}
+
+/* Soft pulsing backdrop */
+.logo-halo{
+    position:absolute;
+    width:102px;
+    height:102px;
+    border-radius:28px;
+    border:1px solid #ffffff35;
+    animation:haloPulse 3s ease-in-out infinite;
+}
+@keyframes haloPulse{
+    0%,100%{transform:scale(.94);opacity:.25}
+    50%{transform:scale(1.08);opacity:.8}
+}
+
+.logo-box{
+    width:82px;
+    height:82px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    border-radius:22px;
+    border:1px solid #d8d8d8;
+    background:linear-gradient(145deg,#555,#171717 72%);
+    box-shadow:0 8px 28px #000,inset 0 1px 9px #ffffff28;
+    animation:logoFloat 3.5s ease-in-out infinite;
+}
+
+.logo-box::before{
+    content:"";
+    position:absolute;
+    top:-20%;
+    left:-120%;
+    width:70%;
+    height:150%;
+    transform:rotate(28deg);
+    background:linear-gradient(90deg,transparent,#ffffff55,transparent);
+    animation:logoSweep 4s ease-in-out infinite;
+}
+
+.logo-letter{
+    position:relative;
+    z-index:2;
+    width:100%;
+    text-align:center;
+    font-family:Orbitron,sans-serif;
+    font-size:57px;
+    font-weight:900;
+    font-style:normal;
+    line-height:1;
+    color:#f5f5f5;
+    text-shadow:0 2px 10px #000,0 0 14px #ffffff35;
+}
+
+@keyframes logoFloat{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-7px)}
+}
+@keyframes logoSweep{
+    0%,35%{left:-120%}
+    75%,100%{left:150%}
+}
+
+/* TITLE */
+h1{
+    font-family:Orbitron,sans-serif;
+    font-size:25px;
+    font-weight:900;
+    letter-spacing:2px;
+    background:linear-gradient(90deg,#888,#fff,#aaa,#fff,#888);
+    background-size:250% auto;
+    background-clip:text;
+    -webkit-background-clip:text;
+    color:transparent;
+    animation:titleShine 4s linear infinite,titleEnter .9s ease both;
+}
+@keyframes titleShine{
+    to{background-position:250% center}
+}
+@keyframes titleEnter{
+    from{opacity:0;transform:translateY(12px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+.subtitle{
+    margin-top:11px;
+    color:#929292;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:3px;
+    animation:subtitleFade 3s ease-in-out infinite alternate;
+}
+@keyframes subtitleFade{
+    to{color:#ddd}
+}
+
+/* STATUS */
+.status{
+    width:fit-content;
+    margin:26px auto;
+    padding:9px 17px;
+    display:flex;
+    align-items:center;
+    gap:9px;
+    border-radius:30px;
+    background:#ffffff09;
+    border:1px solid #ffffff25;
+    color:#dedede;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    animation:statusGlow 2.5s ease-in-out infinite;
+}
+.dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#e5e5e5;
+    box-shadow:0 0 9px #fff;
+    animation:dotPulse 1.4s ease-in-out infinite;
+}
+@keyframes dotPulse{
+    50%{opacity:.35;transform:scale(.7)}
+}
+@keyframes statusGlow{
+    50%{border-color:#ffffff55;box-shadow:0 0 14px #ffffff0b}
+}
+
+/* KEY */
+.key-label{
+    margin-bottom:11px;
+    text-align:left;
+    color:#aaa;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.key-box{
+    padding:17px 14px;
+    border-radius:13px;
+    border:1px solid #ffffff30;
+    background:linear-gradient(145deg,#252525,#0b0b0b);
+    color:#e8e8e8;
+    font-size:13px;
+    font-weight:600;
+    line-height:1.8;
+    word-break:break-all;
+    box-shadow:inset 0 2px 15px #0008;
+    transition:.35s ease;
+    animation:keyAppear 1s ease both;
+}
+@keyframes keyAppear{
+    from{opacity:0;transform:translateY(15px)}
+    to{opacity:1;transform:translateY(0)}
+}
+.key-box:hover{
+    border-color:#ddd;
+    box-shadow:0 0 18px #ffffff12,inset 0 2px 15px #0008;
+    transform:translateY(-2px);
+}
+
+/* BUTTON */
+.copy-btn{
+    width:100%;
+    position:relative;
+    overflow:hidden;
+    margin-top:17px;
+    padding:16px;
+    border:1px solid #eee;
+    border-radius:13px;
+    background:linear-gradient(110deg,#eee,#999,#eee);
+    background-size:200% 100%;
+    color:#080808;
+    font-size:13px;
+    font-weight:900;
+    letter-spacing:2px;
+    cursor:pointer;
+    transition:.3s ease;
+    animation:buttonFlow 4s linear infinite;
+}
+@keyframes buttonFlow{
+    to{background-position:200% 0}
+}
+.copy-btn::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:60%;
+    height:100%;
+    transform:skewX(-25deg);
+    background:linear-gradient(90deg,transparent,#fff9,transparent);
+}
+.copy-btn:hover::before{animation:buttonSweep .8s ease}
+@keyframes buttonSweep{
+    to{left:150%}
+}
+.copy-btn:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 28px #ffffff22;
+}
+.copy-btn:active{transform:scale(.97)}
+
+/* FOOTER */
+.footer{
+    margin-top:27px;
+    padding-top:18px;
+    border-top:1px solid #ffffff18;
+    color:#777;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:2px;
+    line-height:2;
+}
+.footer span{
+    display:inline-block;
+    animation:footerPulse 3s ease-in-out infinite;
+}
+@keyframes footerPulse{
+    50%{color:#ddd}
+}
+
+/* TOAST */
+.toast{
+    position:fixed;
+    z-index:10;
+    bottom:30px;
+    left:50%;
+    transform:translate(-50%,20px);
+    padding:14px 22px;
+    border-radius:12px;
+    background:#202020;
+    border:1px solid #aaa;
+    color:white;
+    font-size:12px;
+    font-weight:800;
+    opacity:0;
+    transition:.35s;
+    pointer-events:none;
+    white-space:nowrap;
+}
+.toast.show{
+    opacity:1;
+    transform:translate(-50%,0);
+}
+
+/* MOBILE */
+@media(max-width:400px){
+    .container{padding:32px 21px 25px}
+    h1{font-size:22px}
+    .key-box{font-size:12px}
+}
+
+/* ACCESSIBILITY */
+@media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{
+        animation:none!important;
+        transition:none!important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background">
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+</div>
+
+<div class="grid-bg"></div>
+<div id="stars"></div>
+<div id="particles"></div>
+
+<main class="container">
+    <div class="card-light"></div>
+
+    <div class="logo-area">
+        <div class="logo-halo"></div>
+        <div class="logo-box">
+            <span class="logo-letter">V</span>
+        </div>
+    </div>
+
+    <h1>VENYX HUB KEY</h1>
+    <p class="subtitle">PREMIUM ACCESS SYSTEM</p>
+
+    <div class="status">
+        <span class="dot"></span>
+        KEY AVAILABLE
+    </div>
+
+    <div class="key-label">YOUR ACCESS KEY</div>
+
+    <div class="key-box" id="key">
+        VenyxHubKeyLajwowiLalwpwihLalwoiwbwNsjowwo
+    </div>
+
+    <button class="copy-btn" id="copyBtn" onclick="copyKey()">
+        ✦ &nbsp; COPY KEY
+    </button>
+
+    <div class="footer">
+        <span>VENYX HUB © 2026</span>
+        <br>
+        POWERED BY VENYX
+    </div>
+</main>
+
+<div class="toast" id="toast">✓ KEY COPIED SUCCESSFULLY</div>
+
+<script>
+const key = "VenyxHubKeyLajwowiLalwpwihLalwoiwbwNsjowwo";
+
+async function copyKey(){
+    try{
+        if(navigator.clipboard && window.isSecureContext){
+            await navigator.clipboard.writeText(key);
+        }else{
+            const area=document.createElement("textarea");
+            area.value=key;
+            area.style.position="fixed";
+            area.style.opacity="0";
+            document.body.appendChild(area);
+            area.select();
+            const success=document.execCommand("copy");
+            area.remove();
+            if(!success) throw new Error("Copy failed");
+        }
+
+        const toast=document.getElementById("toast");
+        const btn=document.getElementById("copyBtn");
+
+        toast.classList.add("show");
+        btn.innerHTML="✓ &nbsp; COPIED SUCCESSFULLY";
+
+        setTimeout(()=>{
+            toast.classList.remove("show");
+            btn.innerHTML="✦ &nbsp; COPY KEY";
+        },2200);
+    }catch(error){
+        alert("Copy failed! Please try again.");
+    }
+}
+
+/* CREATE FLOATING PARTICLES */
+const particleLayer=document.getElementById("particles");
+
+for(let i=0;i<75;i++){
+    const p=document.createElement("span");
+    p.className="particle";
+
+    const size=1+Math.random()*2.5;
+    p.style.width=size+"px";
+    p.style.height=size+"px";
+    p.style.left=Math.random()*100+"%";
+    p.style.animationDuration=(6+Math.random()*13)+"s";
+    p.style.animationDelay=Math.random()*15+"s";
+
+    particleLayer.appendChild(p);
+}
+
+/* CREATE TWINKLING STARS */
+const starLayer=document.getElementById("stars");
+
+for(let i=0;i<85;i++){
+    const s=document.createElement("span");
+    s.className="star";
+
+    const size=1+Math.random()*2;
+    s.style.width=size+"px";
+    s.style.height=size+"px";
+    s.style.left=Math.random()*100+"%";
+    s.style.top=Math.random()*100+"%";
+    s.style.animationDelay=Math.random()*4+"s";
+    s.style.animationDuration=(1.5+Math.random()*3)+"s";
+
+    starLayer.appendChild(s);
+}
+
+/* CARD TILT ON DESKTOP */
+const card=document.querySelector(".container");
+
+if(window.matchMedia("(hover:hover) and (pointer:fine)").matches){
+    document.addEventListener("mousemove",e=>{
+        const x=e.clientX/window.innerWidth-.5;
+        const y=e.clientY/window.innerHeight-.5;
+        card.style.transform=
+            `perspective(1200px) rotateY(${x*2}deg) rotateX(${-y*2}deg)`;
+    });
+
+    document.addEventListener("mouseleave",()=>{
+        card.style.transform=
+            "perspective(1200px) rotateY(0deg) rotateX(0deg)";
+    });
+}
+</script>
+
+</body>
+</html>
